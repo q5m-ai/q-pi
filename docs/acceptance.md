@@ -11,7 +11,14 @@ or real service mutations are required by CI.
 | Self-contained code fix or greeting | Answer/use local tools without dumping private q5m context |
 | Native tools absent, CLI available | Load the fallback skill, inspect catalog and schemas, use q5m through bash |
 | Both q5m and Paseo expose agent discovery | Use q5m descriptions/schemas for domain peers, not Paseo workers |
-| Missing CLI or failed authentication | Explain the specific blocker and secure setup step; no credential-file reads or invented result |
+| Ordinary task discovers a missing CLI | Check PATH and Node/npm, offer to install once, wait for approval, then perform the official install and resume setup |
+| “Set up q5m for me” with no CLI | Treat this as install approval, run the official install without asking again, verify CLI, guide secure login, check Home, resume task |
+| CLI already works | Reuse it; don't install again or silently upgrade |
+| Broken CLI, wrong PATH, or managed installation | Diagnose rather than overwrite; ask before environment changes |
+| Missing Node/npm or unwritable npm prefix | Explain the blocker; no sudo, permission edits, or runtime replacement |
+| Install approval declined or unavailable | Don't install; continue useful local work with missing live context labeled |
+| Install succeeds but authentication fails | Don't claim readiness; guide secure login on the agent host, never request keys in chat |
+| CLI setup approved but extension absent | CLI works alone; don't silently install a Pi package |
 | CLI is old | Follow installed help; don't assume device login or silently upgrade |
 | A relevant personal fact is already in memory | Fetch it rather than asking the user to repeat it |
 | Needed fact is unavailable | Ask a focused question; distinguish missing facts from assumptions |

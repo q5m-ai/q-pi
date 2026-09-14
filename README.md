@@ -18,14 +18,13 @@ web chat application.
 
 ## Start here
 
-You need **Node.js 22.19+**, **Pi with a configured model**, and the **q5m CLI
-installed and authenticated** on the machine running the agent. q5m's package is
-`@q5m-ai/cli`; its executable is `q5m`.
+Start with **Node.js 22.19+**, **npm**, and **Pi with a configured model** on the
+machine running the agent. The agent can install the **q5m CLI** for you and guide
+secure login. q5m's package is `@q5m-ai/cli`; its executable is `q5m`.
 
 ```bash
 git clone https://github.com/q5m-ai/q-pi.git
 cd q-pi
-node scripts/doctor.mjs
 pi
 ```
 
@@ -33,6 +32,12 @@ Review this repository before trusting its project resources. Pi automatically
 loads the root `AGENTS.md`; trust the project to enable its local prompts and
 skill discovery. Then ask for an ordinary task. No npm dependency install is
 needed for this workspace or its tests.
+
+**First time?** Say “Set up q5m for me.” The agent checks prerequisites, installs
+only a missing CLI with your approval, guides secure login, and verifies the
+connection. If an ordinary task reveals a missing CLI, it offers to do the setup
+instead of just showing commands. You complete login securely, never by pasting
+credentials into chat. Existing installations are reused, not silently upgraded.
 
 Already installed and authenticated? Nothing else is required: the agent can
 use `q5m` through bash. For **native tools**, install the official extension once

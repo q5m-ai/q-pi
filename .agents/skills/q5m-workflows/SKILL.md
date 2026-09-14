@@ -1,6 +1,6 @@
 ---
 name: q5m-workflows
-description: Use for everyday life and work involving connected services, personal context, specialist skills, memory, or prior q5m conversations when native q5m tools are unavailable or CLI guidance is needed. Route by capability, load instructions, inspect schemas, act, and verify.
+description: Use to set up or install the q5m CLI, or for everyday life and work involving connected services, personal context, specialist skills, memory, or prior q5m conversations when native q5m tools are unavailable or CLI guidance is needed. Route by capability, load instructions, inspect schemas, act, and verify.
 ---
 
 # q5m from a shell-capable agent
@@ -8,6 +8,19 @@ description: Use for everyday life and work involving connected services, person
 The executable is `q5m`; the npm package is `@q5m-ai/cli`. No platform checkout,
 MCP server, second model, or custom credentials implementation is required.
 Follow the repository's `AGENTS.md` action, Home, and privacy boundaries.
+
+## 0. Install a missing CLI with approval
+
+If `q5m` is unavailable or the user asks for setup, follow the agent-led setup in
+[the setup guide](../../../docs/setup.md) and the root `AGENTS.md`. Check PATH and
+Node/npm first; don't treat a broken or managed installation as absent. Offer to
+perform the install, not just describe it. An explicit q5m setup/install request
+is approval; otherwise ask once before running
+`npm install --global --ignore-scripts @q5m-ai/cli`. Don't use sudo or silently
+upgrade existing tools. If blocked or approval is unavailable, report that and
+continue useful local work. Verify the CLI, guide secure user-completed login,
+check authentication and Home, then resume the task. The optional native
+extension is a separate opt-in, not required for CLI workflows.
 
 ## 1. Establish the current contract
 
