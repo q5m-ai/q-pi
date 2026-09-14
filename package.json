@@ -1,0 +1,13 @@
+{
+  "name": "q-pi",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A Pi life-work workspace powered by the q5m agent network",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=22.19.0" },
+  "scripts": {
+    "test": "node --test",
+    "doctor": "node scripts/doctor.mjs"
+  }
+}

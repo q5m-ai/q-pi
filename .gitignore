@@ -1,0 +1,25 @@
+# Personal life work must never enter the public template.
+/private/
+/artifacts/
+/exports/
+/sessions/
+/.local/
+.env
+.env.*
+!.env.example
+*.log
+*.jsonl
+*.pem
+*.key
+
+# Local runtime configuration and package caches
+/.pi/settings.json
+/.pi/npm/
+/.pi/git/
+/.pi/sessions/
+/.pi/auth.json
+/.pi/models.json
+/.pi/extensions/
+/node_modules/
+/coverage/
+.DS_Store
