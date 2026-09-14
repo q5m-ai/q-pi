@@ -1,6 +1,6 @@
 # q-pi
 
-**Your life-work workspace in [Pi](https://pi.dev), powered by q5m.**
+**Your life-work workspace in [Pi](https://pi.dev), powered by [q5m](https://www.q5m.ai).**
 
 Talk naturally. Use your connected agents, skills, memory, and services. Build
 scripts, reports, small apps, and new workflows when conversation isn't enough.
