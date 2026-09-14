@@ -62,6 +62,7 @@ Paseo, older CLI login flows, and remote-host authentication.
 | Path | Purpose |
 | --- | --- |
 | `AGENTS.md` | Always-on generalist behavior, capability routing, memory, Home and action boundaries |
+| `favicon.png` | Q agent's original icon, automatically discovered by Paseo |
 | `.agents/skills/q5m-workflows/` | Schema-driven CLI fallback, loaded when needed |
 | `.pi/prompts/` | Optional `/day-plan`, `/weekly-review`, `/build-workflow` shortcuts |
 | `scripts/doctor.mjs` | Read-only readiness checks, with no credential or catalog dumps |

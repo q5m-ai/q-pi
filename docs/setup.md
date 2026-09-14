@@ -127,6 +127,29 @@ A worktree gets tracked template files, not ignored `private/` files. For daily
 life work, use the existing local workspace or deliberately maintain a separate
 private location. Don't force-add private context to make it follow a worktree.
 
+### Project icon
+
+The tracked root [`favicon.png`](../favicon.png) supplies the project icon
+without `paseo.json`, a plugin, or a running web server. It is an unmodified copy
+of **Q's agent icon**, `agents/q/icon.png` in q5m-platform at commit
+`61516521a4818d0c34fc9eaff3e4f3ca49f40809`: a white orbit mark on charcoal, not
+the purple platform favicon. The PNG is 120×120 pixels and 4,014 bytes.
+
+Paseo's [workspace docs](https://paseo.sh/docs/workspaces.md) describe the project
+and checkout model. The precise icon discovery contract lives in its
+[icon loader](https://github.com/getpaseo/paseo/blob/0aca3b605a6f3dc779428d8c9aa394287a1381f6/packages/server/src/utils/project-icon.ts):
+`favicon.png` is a recognized preferred name; the loader searches asset folders
+and monorepo packages before falling back to the repository root, and accepts
+square icons up to 32 KB. PNG works in both web and native clients without ICO
+decoding limitations. Do not add a sibling `favicon.svg`: it would take precedence
+over Q's PNG.
+
+The file must exist in the checkout Paseo reads on the daemon host. After
+merging, update that checkout; a separate worktree doesn't automatically gain
+new files from another branch. If the icon is still missing, check the selected
+project path and any manually assigned project icon before changing daemon state.
+No daemon restart is part of this repository's setup.
+
 ## Troubleshooting
 
 | Symptom | Next step |
