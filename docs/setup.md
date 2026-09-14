@@ -95,7 +95,10 @@ its destructive-action confirmations. q-pi only supplies workspace behavior and
 workflows. Without it, the CLI fallback remains supported. With it, do not bypass
 a confirmation or rejection by switching to the CLI.
 
-## Paseo
+## Paseo (recommended, optional)
+
+[Paseo](https://paseo.sh) is recommended for using this workspace with a Pi agent,
+but it is not a prerequisite. You can use the repo with Pi directly instead.
 
 Use this checkout as the project/workspace directory for a Pi agent in Paseo.
 You can register it from the daemon host:

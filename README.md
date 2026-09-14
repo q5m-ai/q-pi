@@ -51,6 +51,9 @@ Restart Pi, then use `/q5m status`. The official extension loads Q's live
 instructions and catalog and exposes peer tools with their exact schemas. q-pi
 does not duplicate it or silently modify your global Pi settings.
 
+**Recommended, optional:** [Paseo](https://paseo.sh) is a companion for using this
+workspace with a Pi agent. It isn't required; running Pi directly works too.
+
 Missing prerequisites? See [setup and troubleshooting](docs/setup.md), including
 Paseo, older CLI login flows, and remote-host authentication.
 
