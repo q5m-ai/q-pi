@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { existsSync, readdirSync, readFileSync, mkdtempSync, copyFileSync, rmSync } from 'node:fs';
 import { tmpdir } from 'node:os';
@@ -54,16 +55,17 @@ test('Pi prompt files have descriptions and are discoverable without custom sett
   }
 });
 
-test('Paseo project icon is a compact, square, self-contained SVG', () => {
-  const svg = read('favicon.svg');
-  assert.ok(Buffer.byteLength(svg, 'utf8') <= 32 * 1024, 'Paseo limits icons to 32 KB');
-  assert.match(svg, /<svg\b[^>]*xmlns="http:\/\/www\.w3\.org\/2000\/svg"/);
-  assert.match(svg, /<svg\b[^>]*width="64"[^>]*height="64"[^>]*viewBox="0 0 64 64"/);
-  assert.match(svg, /<title>q-pi<\/title>/);
-  assert.match(svg, /<path\b/);
-  assert.match(svg, /<\/svg>\s*$/);
-  // Asset guardrails, not a general-purpose SVG sanitizer.
-  assert.doesNotMatch(svg, /<(?:script|foreignObject|image|use|text|style)\b|\b(?:href|on\w+)\s*=|url\(|<!DOCTYPE|<!ENTITY/i);
+test('Paseo project icon preserves the original Q agent PNG', () => {
+  const png = readFileSync('favicon.png');
+  assert.ok(png.length <= 32 * 1024, 'Paseo limits icons to 32 KB');
+  assert.deepEqual(png.subarray(0, 8), Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]));
+  assert.equal(png.toString('ascii', 12, 16), 'IHDR');
+  assert.equal(png.readUInt32BE(16), 120);
+  assert.equal(png.readUInt32BE(20), 120);
+  // q5m-platform agents/q/icon.png, source commit recorded in docs/setup.md.
+  assert.equal(createHash('sha256').update(png).digest('hex'),
+    'fb8cd731e5546fd7b7f45467095e59e99ebd45137179823191c40f446279380c');
+  assert.ok(!existsSync('favicon.svg'), 'A root SVG would shadow Q’s PNG in Paseo');
 });
 
 test('local Markdown links resolve', () => {
@@ -92,7 +94,7 @@ test('ignore rules protect personal artifacts but retain public resources', () =
     const ignored = ['private/AGENTS.md', 'private/report.html', '.env', '.env.local',
       '.pi/auth.json', '.pi/settings.json', '.pi/npm/cache.json', '.pi/git/package/file',
       'exports/calendar.csv', 'sessions/session.json', 'conversation.jsonl', 'debug.log'];
-    const publicPaths = ['AGENTS.md', 'README.md', 'favicon.svg', '.pi/prompts/day-plan.md',
+    const publicPaths = ['AGENTS.md', 'README.md', 'favicon.png', '.pi/prompts/day-plan.md',
       '.agents/skills/q5m-workflows/SKILL.md', 'scripts/doctor.mjs', 'examples/private-AGENTS.md'];
     for (const [paths, expected] of [[ignored, 0], [publicPaths, 1]]) {
       for (const path of paths) {
