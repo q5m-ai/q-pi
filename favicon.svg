@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>q-pi</title>
+  <rect width="64" height="64" rx="14" fill="#7c3aed"/>
+  <g
+    fill="none"
+    stroke="#ffffff"
+    stroke-width="5.333"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    transform="translate(32 32) scale(0.85) translate(-32 -32)"
+  >
+    <circle cx="32" cy="32" r="2.667"/>
+    <path d="M53.867 53.867c5.44-5.414.053-19.627-12-31.734-12.107-12.053-26.32-17.44-31.734-12-5.44 5.414-.053 19.627 12 31.734 12.107 12.053 26.32 17.44 31.734 12Z"/>
+    <path d="M41.867 41.867c12.053-12.107 17.44-26.32 12-31.734-5.414-5.44-19.627-.053-31.734 12-12.053 12.107-17.44 26.32-12 31.734 5.414 5.44 19.627.053 31.734-12Z"/>
+  </g>
+</svg>
