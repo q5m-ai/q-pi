@@ -27,6 +27,23 @@ test('portable startup contract and fallback skill exist', () => {
   }
 });
 
+test('agent-led onboarding is discoverable and bounded by install approval', () => {
+  const contract = read('AGENTS.md');
+  const setup = read('docs/setup.md');
+  const skill = read('.agents/skills/q5m-workflows/SKILL.md');
+  const install = 'npm install --global --ignore-scripts @q5m-ai/cli';
+  for (const text of [contract, setup, skill]) {
+    assert.ok(text.includes(install));
+    assert.match(text, /approval/i);
+    assert.match(text, /sudo/);
+  }
+  assert.match(contract, /already supplies this approval/);
+  assert.match(contract, /A successful install is not a successful login/);
+  assert.match(contract, /resume the original task/);
+  assert.match(skill, /\[the setup guide\]\(\.\.\/\.\.\/\.\.\/docs\/setup\.md\)/);
+  assert.match(read('README.md'), /Set up q5m for me/);
+});
+
 test('Pi prompt files have descriptions and are discoverable without custom settings', () => {
   const files = readdirSync('.pi/prompts');
   assert.deepEqual(files.sort(), ['build-workflow.md', 'day-plan.md', 'weekly-review.md']);

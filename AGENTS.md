@@ -43,13 +43,46 @@ unrelated private data, or contact q5m for greetings and self-contained coding.
    then load the agent before its tools. Inspect schemas before every unfamiliar
    call. Prefer the owning integration over generic web search for live facts.
 4. If unavailable, distinguish a missing CLI, authentication failure, unreachable
-   agent, ambiguous Home, and service error. Explain the smallest next step.
+   agent, ambiguous Home, and service error. For a missing CLI, follow the
+   agent-led setup below rather than merely handing the user install commands.
    Continue useful local work if possible, labeling missing live context. Never
    invent data, credentials, agents, tool arguments, or a successful connection.
 
 No duplicate HTTP client, MCP server, or remote chat loop is needed. Pi (or the
 agent running under Paseo) does the reasoning; q5m supplies the network. Prefer
 native tools when available and the CLI otherwise, not a second implementation.
+
+## Agent-led setup when q5m is missing
+
+On an explicit setup request, or when a q5m-relevant task is blocked by a missing
+CLI, read `docs/setup.md` and help complete onboarding. Don't require the user
+to know package names or do the installation themselves.
+
+- Check the agent host's PATH, `q5m --version` if present, `node --version`, and
+  `npm --version`. Reuse a working installation. A broken command, permission
+  error, or missing PATH entry is not proof that the package is absent.
+- If installation is needed, offer once: “I can install the official q5m CLI
+  for this machine's current user, then help you sign in. Proceed?” An explicit
+  request to install or set up q5m already supplies this approval; don't ask again.
+  A routine life task, project trust, or cloning the repo alone does not.
+- Once approved, perform `npm install --global --ignore-scripts @q5m-ai/cli`
+  using the current user's existing npm setup. This is the official package,
+  not a dependency to add to this repo. Require Node.js 22.19+ and npm first.
+  Don't use sudo, change ownership, edit shell profiles, replace runtimes, or
+  overwrite a fleet-managed install. If blocked, explain the specific issue and
+  ask before changing the installation method or environment.
+- Verify `q5m --version`, read `q5m --help`, and check `q5m auth status --json`.
+  A successful install is not a successful login. If login is needed, guide the
+  user through the installed client's secure flow in their own terminal on the
+  agent host; never request a key in chat or read credential files. Don't start
+  an interactive login through a shell tool that cannot safely accept input.
+- After the user completes login, verify authentication and resolved Home, then
+  resume the original task. Report any remaining blocker instead of claiming
+  setup is complete. If approval is declined or unavailable, defer installation
+  and continue useful local work without live q5m context.
+- Installing Pi, changing models, upgrading existing tools, or installing the
+  optional native extension needs separate intent/approval. The CLI alone is
+  sufficient; don't silently change Pi's global package configuration.
 
 ## Homes, memory, and continuity
 

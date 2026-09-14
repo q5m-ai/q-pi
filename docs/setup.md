@@ -1,5 +1,40 @@
 # Setup
 
+## Let the agent set up q5m
+
+Open this checkout in Pi and say **“Set up q5m for me.”** You need Node.js 22.19+
+and npm on the agent host. The agent checks PATH and existing tools, installs a
+missing CLI, guides secure login, verifies the connection, and resumes your task.
+An explicit setup/install request authorizes the missing CLI install. Otherwise,
+if a life-work task discovers it is missing, the agent asks once before installing.
+Project trust or cloning alone is not installation consent.
+
+After approval, the agent runs:
+
+```bash
+npm install --global --ignore-scripts @q5m-ai/cli
+q5m --version
+q5m --help
+q5m auth status --json
+```
+
+The install uses the current user's existing npm configuration, not this repo's
+package.json. No sudo, permission changes, runtime replacements, shell-profile
+edits, or managed-tool overrides. If Node/npm is missing, the npm prefix isn't
+writable, or PATH is wrong, the agent reports the blocker and asks before changing
+anything else. It doesn't mistake an authentication or network error for a reason
+to reinstall. Declined or unavailable approval means no install.
+
+If authentication is needed, complete `q5m auth login` in your own terminal on
+the agent host using the installed version's secure flow. Don't paste keys into
+chat; don't run an interactive login in an agent shell without safe input support.
+Afterward the agent checks authentication and resolved Home again. Installing
+the CLI does not authenticate it. Pi, model setup, upgrades, and the optional
+native extension are separate changes requiring their own approval.
+
+The doctor below stays read-only. This onboarding is agent guidance, not an
+auto-running installation script.
+
 ## Already installed and authenticated
 
 Clone the repo on the agent's machine, enter it, and run:
@@ -60,7 +95,10 @@ its destructive-action confirmations. q-pi only supplies workspace behavior and
 workflows. Without it, the CLI fallback remains supported. With it, do not bypass
 a confirmation or rejection by switching to the CLI.
 
-## Paseo
+## Paseo (recommended, optional)
+
+[Paseo](https://paseo.sh) is recommended for using this workspace with a Pi agent,
+but it is not a prerequisite. You can use the repo with Pi directly instead.
 
 Use this checkout as the project/workspace directory for a Pi agent in Paseo.
 You can register it from the daemon host:
@@ -93,7 +131,7 @@ private location. Don't force-add private context to make it follow a worktree.
 
 | Symptom | Next step |
 | --- | --- |
-| `q5m` missing | Check CLI install and PATH as the agent's OS user |
+| `q5m` missing | The agent checks PATH and offers to install the official CLI after approval |
 | Authentication failure | Run `q5m auth status` in your terminal, then the secure login flow if needed |
 | Wrong Home | Inspect the resolved catalog Home; choose a per-call Home or intentionally change the default |
 | CLI works, native tools absent | Check `pi list`, restart, and `/q5m status`; use CLI only if not bypassing a safety rejection |
