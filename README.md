@@ -23,7 +23,7 @@ installed and authenticated** on the machine running the agent. q5m's package is
 `@q5m-ai/cli`; its executable is `q5m`.
 
 ```bash
-git clone https://github.com/ekalvi/q-pi.git
+git clone https://github.com/q5m-ai/q-pi.git
 cd q-pi
 node scripts/doctor.mjs
 pi
